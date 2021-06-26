@@ -43,7 +43,7 @@ Lembrando que você precisa ter uma conta [Figma](http://figma.com/) para acess�
 
 ## 📝 License
 
-Este projeto está licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](https://github.com/raphaelfeitosa/NLW6/blob/main/letmeask/LICENSE.md) para obter detalhes.
+Este projeto está licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](https://github.com/raphaelfeitosa/NLW6/blob/main/LICENSE.md) para obter detalhes.
 
 ## :rocket:Autor
 
