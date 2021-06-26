@@ -11,18 +11,14 @@ Aplicações desenvolvidas durante NLW6 oferecida pela Rockeseat. Trilhas Node e
 
 Valoriza é uma aplicação que foi desenvolvida no NLW-6-Together promovida pela [RocketSeat](https://rocketseat.com.br).
 
-Você pode acessar e clonar o repositorio da aplicação em:
-
-- [Valoriza](https://github.com/raphaelfeitosa/nlw-6-nodejs-reactjs/Nodejs) 
+Você pode acessar e a aplicação em: [Valoriza](https://github.com/raphaelfeitosa/nlw-6-nodejs-reactjs/tree/main/valoriza) 
 
 
 ## 💻 Projeto Letmeask
 
 Letmeask é uma aplicação que foi desenvolvida no o NLW-6-Togetherpromovida pela [RocketSeat](https://rocketseat.com.br).
 
-Você pode acessar e clonar o repositorio da aplicação em:
-
-- [Leatmeask](https://github.com/raphaelfeitosa/nlw-6-nodejs-reactjs/letmeask) 
+Você pode acessar e clonar o repositorio da aplicação em: [Leatmeask](https://github.com/raphaelfeitosa/nlw-6-nodejs-reactjs/tree/main/letmeask) 
 
 ## 📝 License
 
