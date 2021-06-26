@@ -1,17 +1,18 @@
 <h1 align="center">
-			Aplicação Desenvolvida no NLW-Together 6 promovida pela RocketSet - Letmeask
+Letmeask
 </h1>
 
 <h4 align="center">
 	🚧 🚀 Concluído 🚀 🚧
 </h4>
 
-## Aplicação
+## 💻 Projeto
+
+Letmeask é uma aplicação que foi desenvolvida no NLW-Together 6 promovida pela [RocketSeat](https://rocketseat.com.br).
 
 Você pode testar a aplicação em:
 
 - [https://letmeask-35799.web.app/](https://letmeask-35799.web.app/) 
-
 
 ## Tela criar sala com google ou entrar em uma sala existente
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
@@ -32,6 +33,26 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias
 - [React](https://reactjs.org)
 - [Firebase](https://firebase.google.com/)
 - [TypeScript](https://www.typescriptlang.org/)
+
+## 🚀 Como executar
+
+Clone o projeto e acesse a pasta.
+
+```bash
+$ git clone https://github.com/raphaelfeitosa/nlw-6-nodejs-reactjs.git
+$ cd nlw-6-nodejs-reactjs/letmeask
+```
+
+Siga os passos abaixo:
+
+```bash
+# Install the dependencies
+$ yarn
+
+# Start the project
+$ yarn start
+```
+The app will be available for access on your browser at http://localhost:3000
 
 ## 🔖 Layout
 
