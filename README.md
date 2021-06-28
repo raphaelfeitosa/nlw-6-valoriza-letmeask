@@ -26,6 +26,11 @@ Este projeto está licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](h
 
 ## :rocket:Autor
 
-Raphael Feitosa
+<a href="https://github.com/raphaelfeitosa">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/raphaelfeitosa" width="100px;" alt=""/>
+
+ <sub><b>Raphael Feitosa</b></sub></a> <a href="https://github.com/raphaelfeitosa/" title="Rocketseat">🚀</a>
+ <br />
 
 [<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/raphael-feitosa/) <a href="mailto:raphaelcs2@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a>
+<br />
