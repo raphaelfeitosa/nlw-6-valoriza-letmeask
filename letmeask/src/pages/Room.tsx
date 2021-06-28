@@ -1,6 +1,7 @@
 
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import toast, { Toaster } from "react-hot-toast";
 
 import logoImg from '../assets/images/logo.svg';
 import { Button } from '../components/Button';
@@ -16,7 +17,6 @@ type RoomParams = {
     id: string;
 }
 
-
 export function Room() {
     const { user } = useAuth();
     const params = useParams<RoomParams>();
@@ -29,12 +29,15 @@ export function Room() {
         event.preventDefault();
 
         if (newQuestion.trim() === '') {
-            return;
+            return toast.error("Pergunta não pode ser vazia!");
         }
 
         if (!user) {
-            throw new Error('You must be logged in');
+            return toast.error("Você precisa fazer login!", {
+                id: roomId,
+            });
         }
+
         const question = {
             content: newQuestion,
             author: {
@@ -45,9 +48,19 @@ export function Room() {
             isAnswered: false
         }
 
-        await database.ref(`/rooms/${roomId}/questions`).push(question);
+        try {
+            await database.ref(`rooms/${roomId}/questions`).push(question);
 
-        setNewQuestion('');
+            setNewQuestion("");
+
+            return toast.success("Pergunta criada com sucesso!", {
+                id: question.content,
+            });
+        } catch {
+            return toast.error("Erro ao criar a pergunta 😢", {
+                id: roomId,
+            });
+        }
     }
 
     async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
@@ -92,6 +105,7 @@ export function Room() {
                             <span>Para enviar uma pergunta, <button>faça seu login</button>.</span>
                         )}
                         <Button type="submit" disabled={!user}>Enviar pergunta</Button>
+                        <Toaster position="top-left" reverseOrder={false} />
                     </div>
                 </form>
 
