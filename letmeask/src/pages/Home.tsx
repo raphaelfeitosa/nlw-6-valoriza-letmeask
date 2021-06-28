@@ -31,7 +31,7 @@ export function Home() {
         event.preventDefault();
 
         if (roomCode.trim() === '') {
-            return;
+            return toast.error("Digite o código da sala para entrar");
         }
 
         const roomRef = await database.ref(`rooms/${roomCode}`).get();
