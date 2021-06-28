@@ -22,9 +22,9 @@ export function NewRoom() {
         event.preventDefault();
 
         if (newRoom.trim() === '') {
-            return
+            return toast.error("Digite o nome da nova sala!");
         }
-        
+
         const roomRef = database.ref('rooms');
 
         const firebaseRoom = await roomRef.push({
