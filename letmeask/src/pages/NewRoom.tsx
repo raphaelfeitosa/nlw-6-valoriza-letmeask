@@ -1,15 +1,13 @@
-
 import { Link, useHistory } from 'react-router-dom';
+import { FormEvent, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
-import { FormEvent } from "react";
 import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
-// import googleIconImg from '../assets/images/google-icon.svg';
 
 import '../styles/auth.scss';
 
 import { Button } from '../components/Button';
-import { useState } from 'react';
 import { database } from '../services/firebase';
 import { useAuth } from '../hooks/useAuth';
 
@@ -22,9 +20,11 @@ export function NewRoom() {
 
     async function handleCreateRoom(event: FormEvent) {
         event.preventDefault();
+
         if (newRoom.trim() === '') {
             return
         }
+        
         const roomRef = database.ref('rooms');
 
         const firebaseRoom = await roomRef.push({
@@ -32,8 +32,14 @@ export function NewRoom() {
             authorId: user?.id
         });
 
-        history.push(`/rooms/${firebaseRoom.key}`)
+        toast.success("Sala criada com sucesso!", {
+            id: newRoom,
+            style: {
+                width: "auto",
+            },
+        });
 
+        history.push(`/rooms/${firebaseRoom.key}`);
     }
 
     return (
@@ -58,6 +64,7 @@ export function NewRoom() {
                         <Button type="submit">
                             Criar sala
                         </Button>
+                        <Toaster position="top-right" reverseOrder={false} />
                     </form>
                     <p>
                         Quer entrar em uma sala existente? <Link to="/">clique aqui</Link>
