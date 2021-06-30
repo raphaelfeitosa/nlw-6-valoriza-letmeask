@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { hash } from "bcryptjs";
 import { CreateUserService } from "../services/CreateUserService";
 
 class CreateUserController {
@@ -9,13 +8,11 @@ class CreateUserController {
 
         const createUserService = new CreateUserService();
 
-        const passwordHash = await hash(password, 8);
-
         const user = await createUserService.execute({
             name,
             email,
             admin,
-            password: passwordHash
+            password
         });
         return response.status(201).json(user);
     }
