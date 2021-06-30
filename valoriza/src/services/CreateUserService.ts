@@ -1,4 +1,5 @@
 import { hash } from "bcryptjs";
+import { badRequest } from "@hapi/boom";
 import { classToPlain } from 'class-transformer';
 import { getCustomRepository } from "typeorm";
 import { UsersRepositories } from "../repositories/UsersRepositories";
@@ -16,13 +17,13 @@ class CreateUserService {
 
         const usersRepository = getCustomRepository(UsersRepositories);
 
-        if (!email) throw new Error("Email incorrect");
+        if (!email) throw badRequest("Email incorrect");
 
         const usersAlreadyExists = await usersRepository.findOne({
             email,
         });
 
-        if (usersAlreadyExists) throw new Error("User already exists");
+        if (usersAlreadyExists) throw badRequest('User already exists', { code: 140 });
 
         const passwordHash = await hash(password, 8);
 
