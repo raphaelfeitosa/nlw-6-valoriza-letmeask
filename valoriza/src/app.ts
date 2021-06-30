@@ -5,6 +5,7 @@ import "dotenv/config";
 import cors from "cors";
 import helmet from "helmet";
 import { errors } from "celebrate";
+import { isBoom } from '@hapi/boom';
 
 import "./database";
 
@@ -21,18 +22,24 @@ app.use(router);
 app.use(errors());
 
 app.use(
-    (err: Error, request: Request, response: Response, next: NextFunction) => {
-        if (err instanceof Error) {
-            return response.status(400).json({
-                error: err.message
+    async (
+        error: Error,
+        _: Request,
+        response: Response,
+        next: NextFunction
+    ) => {
+        if (isBoom(error)) {
+            const { statusCode, payload } = error.output;
+
+            return response.status(statusCode).json({
+                ...payload,
+                ...error.data,
+                // docs: process.env.DOCS_URL,
             });
         }
 
-        return response.status(500).json({
-            status: "error",
-            message: "Internal Server Error"
-        });
-
-    });
+        return next(error);
+    }
+);
 
 export { app };
