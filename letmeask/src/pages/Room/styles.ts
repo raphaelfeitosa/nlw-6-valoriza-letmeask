@@ -29,7 +29,7 @@ export const ContainerRoom = styled.div`
   }
   @media (max-width: 650px) {
     header {
-      padding: 0.5rem;
+      padding: 1rem;
       border-bottom: 1px solid ${(props) => props.theme.colors.tertiary};
       > div {
         max-width: 1120px;
@@ -59,7 +59,7 @@ export const ContainerRoom = styled.div`
     width: min(92%, 800px);
     margin: 0 auto;
     .question-title {
-      margin: 32px 0 24px;
+      margin: 10px 0 5px;
       display: flex;
       align-items: center;
       h1 {

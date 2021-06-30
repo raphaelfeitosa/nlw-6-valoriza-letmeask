@@ -73,12 +73,6 @@ export const MainContent = styled.div`
     max-width: 250px;
   }
 
-  h2 {
-    font-size: 24px;
-    margin: 64px 0 24px;
-    font-family: 'Poppins', sans-serif;
-  }
-
   .user-perfil-login {
       /* background: #FFF; */
       display: flex;
@@ -134,7 +128,7 @@ export const MainContent = styled.div`
     }
 
    h2 {
-      font-size: 30px;
+      font-size: 20px;
       margin: 30px 0 15px;
       font-family: 'Poppins', sans-serif;
     }
@@ -158,7 +152,7 @@ export const MainContent = styled.div`
       }
     }
     p {
-      font-size: 20px;
+      font-size: 15px;
       color: #737380;
       margin-top: 16px;
 

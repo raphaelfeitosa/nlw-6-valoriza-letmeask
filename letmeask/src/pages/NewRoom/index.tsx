@@ -54,8 +54,8 @@ function NewRoom() {
             },
         });
 
-        history.replace(`/admin/rooms/${firebaseRoom.key}`);
-        // history.push(`/rooms/${firebaseRoom.key}`);
+        // history.replace(`/admin/rooms/${firebaseRoom.key}`);
+        history.push(`/rooms/${firebaseRoom.key}`);
     }
 
     return (
