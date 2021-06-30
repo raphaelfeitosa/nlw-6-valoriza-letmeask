@@ -1,29 +1,39 @@
-import { useHistory, useParams } from 'react-router-dom';
+import { useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import { useRoom } from "../../hooks/useRoom";
 
-import logoImg from '../assets/images/logo.svg';
-import deleteImg from '../assets/images/delete.svg';
-import checkImg from '../assets/images/check.svg';
-import answerImg from '../assets/images/answer.svg';
-import { Button } from '../components/Button';
-import { Question } from '../components/Question';
-import { RoomCode } from '../components/RoomCode';
-import { useRoom } from '../hooks/useRoom';
+import LogoAskLive from "../../assets/images/logo-ask-live.png";
+import deleteImg from "../../assets/images/delete.svg";
+import checkImg from "../../assets/images/check.svg";
+import answerImg from "../../assets/images/answer.svg";
+import noQuestionsYet from '../../assets/images/empty-questions.svg';
+import { Button } from "../../components/Button";
+import { RoomCode } from "../../components/RoomCode";
+import { Question } from "../../components/Question";
+import { BsSun, BsMoon } from 'react-icons/bs';
 
-import '../styles/room.scss';
-import { database } from '../services/firebase';
+import { ContainerAdminRoom } from './style';
+import { database } from "../../services/firebase";
+import { useTheme } from "../../styles/hook/theme";
 
 type RoomParams = {
     id: string;
 }
 
-export function AdminRoom() {
-    // const {user} = useAuth();
+function AdminRoom() {
+    const { toggleTheme, theme } = useTheme();
+    const [darkTheme, setDarkTheme] = useState(() => theme.title === 'dark' ? true : false);
 
     const history = useHistory();
     const params = useParams<RoomParams>();
     const roomId = params.id;
 
     const { title, questions } = useRoom(roomId);
+
+    async function handleChangeTheme() {
+        setDarkTheme(!darkTheme);
+        toggleTheme();
+    }
 
     async function handleEndRoom() {
 
@@ -51,21 +61,29 @@ export function AdminRoom() {
             isHighlighted: true,
         });
     }
+
     return (
-        <div id="page-room">
+        <ContainerAdminRoom>
             <header>
                 <div className="content">
-                    <img src={logoImg} alt="Letmeask" />
+                    <img src={LogoAskLive} alt="Letmeask" />
                     <div>
                         <RoomCode code={roomId} />
                         <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>
+                        <button type="button" onClick={handleChangeTheme}>
+                            {darkTheme ? (
+                                <BsSun size={25} className="iconTheme" />
+                            ) : (
+                                <BsMoon size={25} className="iconTheme" />
+                            )}
+                        </button>
                     </div>
                 </div>
             </header>
 
             <main>
-                <div className="room-title">
-                    <h1>Sala {title}</h1>
+                <div className="question-title">
+                    <h1>Sala: {title}</h1>
                     {questions.length > 0 && <span>{questions.length} pergunta(s) </span>}
                 </div>
 
@@ -108,6 +126,22 @@ export function AdminRoom() {
                     })}
                 </div>
             </main>
-        </div>
+            <footer className="empty-question">
+                {questions.length <= 0 ? (
+                    <div>
+                        <img src={noQuestionsYet} alt="Sem perguntas no momento" />
+                        <h3>Nenhuma pergunta por aqui...</h3>
+                        <span>
+                            Compartilhe seu codigo de sala para sua audiencia entrar e
+                            começar a enviar perguntas!
+                        </span>
+                    </div>
+                ) : (
+                    ""
+                )}
+            </footer>
+        </ContainerAdminRoom>
     );
 }
+
+export { AdminRoom };

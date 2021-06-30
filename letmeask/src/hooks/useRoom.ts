@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { database } from '../services/firebase';
-import { useAuth } from './useAuth';
+import { useAuth } from '../contexts/AuthContext';
 
 type QuestionType = {
     id: string;

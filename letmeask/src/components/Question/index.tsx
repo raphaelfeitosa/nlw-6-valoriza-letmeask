@@ -1,6 +1,6 @@
 import cx from 'classnames';
-import { ReactNode } from 'react';
-import './styles.scss';
+import { ReactElement, ReactNode } from 'react';
+import { ContainerQuestion } from './styles';
 
 type QuestionProps = {
     content: string;
@@ -13,19 +13,20 @@ type QuestionProps = {
     isHighlighted?: boolean;
 }
 
-export function Question({
+function Question({
     content,
     author,
     children,
     isAnswered = false,
     isHighlighted = false
-}: QuestionProps) {
+}: QuestionProps): ReactElement {
     return (
-        <div className={cx(
-            'question',
-            { answered: isAnswered },
-            { highlighted: isHighlighted && !isAnswered }
-        )}
+        <ContainerQuestion
+            className={cx(
+                'question',
+                { answered: isAnswered },
+                { highlighted: isHighlighted && !isAnswered }
+            )}
         >
             <p>{content}</p>
             <footer>
@@ -35,6 +36,8 @@ export function Question({
                 </div>
                 <div>{children}</div>
             </footer>
-        </div>
+        </ContainerQuestion>
     )
 }
+
+export { Question };

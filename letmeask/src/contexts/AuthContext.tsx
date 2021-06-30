@@ -1,42 +1,48 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useEffect, useState, useContext } from "react";
 import { auth, firebase } from "../services/firebase";
+import toast from 'react-hot-toast';
 
 type User = {
     id: string;
     name: string;
     avatar: string;
+    email: string | null;
 }
 
 type AuthContextType = {
     user: User | undefined;
     signInWithGoogle: () => Promise<void>;
+    loading: boolean;
+    signOut: () => void;
 }
 
 type AuthContextProviderProps = {
-
     children: ReactNode;
 }
-export const AuthContext = createContext({} as AuthContextType);
+const AuthContext = createContext({} as AuthContextType);
 
-export function AuthContextProvider(props: AuthContextProviderProps) {
-    const [user, setUser] = useState<User>();
+function AuthContextProvider(props: AuthContextProviderProps) {
+    const [user, setUser] = useState<User | undefined>();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if (user) {
-                const { displayName, photoURL, uid } = user;
+                const { displayName, photoURL, uid, email } = user;
 
                 if (!displayName || !photoURL) {
-                    throw new Error('Missing information from Google Account.');
+                    throw new Error('Sua conta goole não possui um nome público ou uma imagem de perfil!');
                 }
 
                 setUser({
                     id: uid,
                     name: displayName,
-                    avatar: photoURL
+                    avatar: photoURL,
+                    email
                 });
 
             }
+            setLoading(false);
         });
 
         return () => {
@@ -52,24 +58,49 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
         const result = await auth.signInWithPopup(provider);
 
         if (result.user) {
-            const { displayName, photoURL, uid } = result.user;
+            const { displayName, photoURL, uid, email } = result.user;
 
             if (!displayName || !photoURL) {
-                throw new Error('Missing information from Google Account.');
+                throw new Error('Sua conta goole não possui um nome público ou uma imagem de perfil!');
             }
 
             setUser({
                 id: uid,
                 name: displayName,
-                avatar: photoURL
-            })
+                avatar: photoURL,
+                email
+            });
+
+            toast.success(`Bem vindo, ${displayName}!`);
         }
     }
 
+    async function signOut() {
+        await firebase.auth().signOut();
+
+        setUser(undefined);
+
+        toast.success(`Até logo!`);
+
+        signInWithGoogle();
+    }
 
     return (
-        <AuthContext.Provider value={{ user, signInWithGoogle }}>
+        <AuthContext.Provider value={{
+            user,
+            signInWithGoogle,
+            loading,
+            signOut
+        }}
+        >
             {props.children}
         </AuthContext.Provider>
     );
 }
+
+function useAuth() {
+    const context = useContext(AuthContext);
+    return context;
+}
+
+export { useAuth, AuthContextProvider };
