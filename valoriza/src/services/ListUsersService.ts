@@ -4,13 +4,13 @@ import { classToPlain } from "class-transformer";
 
 class ListUsersService {
 
-    async execute() {
-        const usersRepositories = getCustomRepository(UsersRepositories);
+  async execute(): Promise<Record<string, string | boolean>> {
+    const usersRepositories = getCustomRepository(UsersRepositories);
 
-        const users = await usersRepositories.find();
+    const users = await usersRepositories.find();
 
-        return classToPlain(users);
-    }
+    return classToPlain(users);
+  }
 }
 
 export { ListUsersService };

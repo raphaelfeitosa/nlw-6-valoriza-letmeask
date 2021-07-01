@@ -5,36 +5,41 @@ import { getCustomRepository } from "typeorm";
 import { UsersRepositories } from "../repositories/UsersRepositories";
 
 interface IUsersRequest {
-    name: string;
-    email: string;
-    admin?: boolean;
-    password: string;
+  name: string;
+  email: string;
+  admin?: boolean;
+  password: string;
 }
 
 class CreateUserService {
 
-    async execute({ name, email, admin = false, password }: IUsersRequest) {
+  async execute({
+    name,
+    email,
+    admin = false,
+    password
+  }: IUsersRequest): Promise<Record<string, string | boolean>> {
 
-        const usersRepository = getCustomRepository(UsersRepositories);
+    const usersRepository = getCustomRepository(UsersRepositories);
 
-        const usersAlreadyExists = await usersRepository.findOne({
-            email,
-        });
+    const usersAlreadyExists = await usersRepository.findOne({
+      email,
+    });
 
-        if (usersAlreadyExists) throw badRequest('User already exists', { code: 140 });
+    if (usersAlreadyExists) throw badRequest('User already exists', { code: 140 });
 
-        const passwordHash = await hash(password, 8);
+    const passwordHash = await hash(password, 8);
 
-        const user = usersRepository.create({
-            name,
-            email,
-            admin,
-            password: passwordHash
-        });
+    const user = usersRepository.create({
+      name,
+      email,
+      admin,
+      password: passwordHash
+    });
 
-        await usersRepository.save(user);
+    await usersRepository.save(user);
 
-        return classToPlain(user);
-    }
+    return classToPlain(user);
+  }
 }
 export { CreateUserService };
