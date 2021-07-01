@@ -1,3 +1,4 @@
+import { badRequest } from "@hapi/boom";
 import { getCustomRepository } from "typeorm";
 import { TagsRepositories } from "../repositories/TagsRepositories";
 
@@ -10,14 +11,10 @@ class CreateTagService {
     async execute({ name }: ITagsRequest) {
         const tagsRepositories = getCustomRepository(TagsRepositories);
 
-        if (!name) {
-            throw new Error("Name incorrect");
-        }
-
         const tagAlreadyExists = await tagsRepositories.findOne({ name });
 
         if (tagAlreadyExists) {
-            throw new Error("Tag Already Exists");
+            throw badRequest("Tag Already Exists", { code: 240 });
         }
 
         const tag = tagsRepositories.create({
