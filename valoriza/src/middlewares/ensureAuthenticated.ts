@@ -1,29 +1,30 @@
+import { badRequest, unauthorized } from "@hapi/boom";
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
 
 interface IPayload {
-    sub: string;
+  sub: string;
 }
 
 export function ensureAuthenticated(request: Request, response: Response, next: NextFunction) {
 
-    const authToken = request.headers.authorization
+  const { authorization } = request.headers;
 
-    if (!authToken) return response.status(401).end();
+  if (!authorization) throw badRequest("Token not provided", { code: 640 });
 
-    const [, token] = authToken.split(" ");
+  const [, token] = authorization.split(" ");
 
-    try {
-        const { sub } = verify(
-            token,
-            "5b40e996d5e2fd0b8a77da09e0585edd"
-        ) as IPayload;
+  try {
+    const { sub } = verify(
+      token,
+      process.env.JWT_SECRET
+    ) as IPayload;
 
-        request.user_id = sub;
+    request.user_id = sub;
 
-        return next();
-    } catch (err) {
-        return response.status(401).end();
-    }
+    return next();
+  } catch (err) {
+    throw unauthorized("Token invalid", "Sample", { code: 641 });
+  }
 
 }
