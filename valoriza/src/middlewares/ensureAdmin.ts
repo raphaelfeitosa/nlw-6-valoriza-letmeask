@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { unauthorized } from "@hapi/boom";
 import { getCustomRepository } from "typeorm";
 import { UsersRepositories } from "../repositories/UsersRepositories";
 
@@ -14,8 +15,6 @@ export async function ensureAdmin(request: Request, response: Response, next: Ne
         return next();
     }
 
-    return response.status(401).json({
-        error: "Unauthorized",
-    });
+    throw unauthorized('You are not authorized', 'sample', { code: 341 });
 
 }
