@@ -5,16 +5,16 @@ import { UsersRepositories } from "../repositories/UsersRepositories";
 
 export async function ensureAdmin(request: Request, response: Response, next: NextFunction) {
 
-    const { user_id } = request;
+  const { user_id } = request;
 
-    const usersRepositories = getCustomRepository(UsersRepositories);
+  const usersRepositories = getCustomRepository(UsersRepositories);
 
-    const { admin } = await usersRepositories.findOne(user_id);
+  const { admin } = await usersRepositories.findOne(user_id);
 
-    if (admin) {
-        return next();
-    }
+  if (admin) {
+    return next();
+  }
 
-    throw unauthorized('You are not authorized', 'sample', { code: 341 });
+  throw unauthorized('You are not authorized', 'sample', { code: 541 });
 
 }
