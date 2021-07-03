@@ -1,4 +1,5 @@
 node_modules
 dist
-src/database/database.sqlite
+*.sqlite
 .env
+tests/coverage
