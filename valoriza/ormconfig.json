@@ -1,14 +1,20 @@
 {
-    "type": "sqlite",
-    "database": "src/database/database.sqlite",
-    "migrations": [
-        "src/database/migrations/*.ts"
-    ],
-    "entities": [
-        "src/entities/*.ts"
-    ],
-    "cli": {
-        "migrationsDir": "src/database/migrations",
-        "entitiesDir": "src/entities"
+  "type": "postgres",
+  "port": 5432,
+  "host": "localhost",
+  "username": "postgres",
+  "password": "docker",
+  "database": "valoriza",
+  "migrations": [
+    "src/database/migrations/*.ts"
+  ],
+  "entities": [
+    "src/entities/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": {
+      "migrationsDir": "src/database/migrations",
+      "entitiesDir": "src/entities"
     }
+  }
 }
