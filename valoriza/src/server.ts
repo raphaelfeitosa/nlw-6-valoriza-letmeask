@@ -1,3 +1,0 @@
-import { app } from "./app";
-
-app.listen(process.env.PORT, () => console.log("Server is running NLW6 Valoriza"));
