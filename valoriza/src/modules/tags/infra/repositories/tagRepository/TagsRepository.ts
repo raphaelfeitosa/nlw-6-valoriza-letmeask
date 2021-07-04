@@ -10,15 +10,23 @@ export class TagsRepository implements ITagsRepository {
     this.tagsRepository = getRepository(Tag);
   }
 
-  async create({ name }: ICreateTagDTO): Promise<void> {
+  async create({ name }: ICreateTagDTO): Promise<Tag> {
     const tag = await this.tagsRepository.create({ name });
     await this.tagsRepository.save(tag);
+    return tag;
   }
+
   async findAll(): Promise<Tag[]> {
     const tags = await this.tagsRepository.find();
     return tags;
   }
-  async findById(id: string): Promise<Tag> {
+
+  async findByName(name: string): Promise<Tag | null> {
+    const tag = await this.tagsRepository.findOne(name);
+    return tag;
+  }
+
+  async findById(id: string): Promise<Tag | null> {
     const tag = await this.tagsRepository.findOne(id);
     return tag;
   }
