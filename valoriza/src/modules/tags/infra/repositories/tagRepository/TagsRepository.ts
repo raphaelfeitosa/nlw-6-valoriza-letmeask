@@ -11,7 +11,7 @@ export class TagsRepository implements ITagsRepository {
   }
 
   async create({ name }: ICreateTagDTO): Promise<Tag> {
-    const tag = await this.tagsRepository.create({ name });
+    const tag = this.tagsRepository.create({ name });
     await this.tagsRepository.save(tag);
     return tag;
   }

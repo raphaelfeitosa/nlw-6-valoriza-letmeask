@@ -21,8 +21,8 @@ export class UsersRepository implements IUsersRepository {
     return user;
   }
 
-  findAll(): Promise<User[]> {
-    const users = this.userRepository.find();
+  async findAll(): Promise<User[]> {
+    const users = await this.userRepository.find();
     return users;
   }
 
