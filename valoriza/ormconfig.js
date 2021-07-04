@@ -11,15 +11,15 @@ module.exports = {
     return "valoriza";
   })(),
   "migrations": [
-    "src/database/migrations/*.ts"
+    "./src/shared/infra/typeorm/migrations/*.ts"
   ],
   "entities": [
-    "src/entities/*.ts"
+    "./src/modules/**/entities/*.ts"
   ],
   "cli": {
     "migrationsDir": {
-      "migrationsDir": "src/database/migrations",
-      "entitiesDir": "src/entities"
+      "migrationsDir": "./src/shared/infra/typeorm/migrations",
+      "entitiesDir": "./src/modules/**/entities"
     }
   }
 }
