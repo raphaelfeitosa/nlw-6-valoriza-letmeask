@@ -8,6 +8,8 @@ import { errors } from "celebrate";
 import { isBoom } from '@hapi/boom';
 
 import "@shared/infra/typeorm";
+import "@shared/container";
+
 import { router } from "./routes";
 
 const app = express();
