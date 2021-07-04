@@ -1,17 +1,15 @@
 import { Request, Response } from "express";
-import { CreateUserService } from "./CreateUserService";
-import { UsersRepositories } from "@modules/users/infra/repositories/UsersRepositories";
-import { getCustomRepository } from "typeorm";
+import { container } from "tsyringe";
+
+import { CreateUserUseCase } from "./CreateUserUseCase";
 
 class CreateUserController {
   async handle(request: Request, response: Response) {
     const { name, email, admin, password } = request.body;
 
-    const usersRepositories = getCustomRepository(UsersRepositories);
+    const createUserUseCase = container.resolve(CreateUserUseCase);
 
-    const createUserService = new CreateUserService(usersRepositories);
-
-    const user = await createUserService.execute({
+    const user = await createUserUseCase.execute({
       name,
       email,
       admin,
