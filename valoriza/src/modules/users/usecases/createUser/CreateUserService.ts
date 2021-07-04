@@ -1,16 +1,10 @@
 import { hash } from "bcryptjs";
 import { badRequest } from "@hapi/boom";
 import { classToPlain } from 'class-transformer';
-import { getCustomRepository, Repository } from "typeorm";
-import { UsersRepositories } from "@modules/users/infra/repositories/UsersRepositories";
-import { User } from "@modules/users/infra/typeorm/entities/User";
+import { Repository } from "typeorm";
 
-interface IUsersRequest {
-  name: string;
-  email: string;
-  admin?: boolean;
-  password: string;
-}
+import { User } from "@modules/users/infra/typeorm/entities/User";
+import { ICreateUserDTO } from "@modules/users/dtos/ICreateUserDTO";
 
 class CreateUserService {
   private usersRepository: Repository<User>;
@@ -24,10 +18,7 @@ class CreateUserService {
     email,
     admin = false,
     password
-  }: IUsersRequest): Promise<Record<string, string | boolean>> {
-
-    // const usersRepository = getCustomRepository(UsersRepositories);
-
+  }: ICreateUserDTO): Promise<Record<string, string | boolean>> {
     const usersAlreadyExists = await this.usersRepository.findOne({
       email,
     });
