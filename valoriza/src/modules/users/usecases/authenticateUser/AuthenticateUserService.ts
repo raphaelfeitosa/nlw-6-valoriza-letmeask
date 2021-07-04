@@ -4,14 +4,10 @@ import { compare } from "bcryptjs";
 import { sign } from 'jsonwebtoken';
 import { UsersRepositories } from "@modules/users/infra/repositories/UsersRepositories";
 import auth from "@config/auth";
+import { ICreateUserTokenDTO } from "@modules/users/dtos/ICreateUserTokenDTO";
 
-interface IAuthenticateRequest {
-  email: string;
-  password: string;
-}
 class AuthenticateUserService {
-
-  async execute({ email, password }: IAuthenticateRequest) {
+  async execute({ email, password }: ICreateUserTokenDTO) {
 
     const usersRepositories = getCustomRepository(UsersRepositories);
 
