@@ -1,0 +1,1 @@
+export { ICreateComplimentDTO } from "./ICreateComplimentDTO";

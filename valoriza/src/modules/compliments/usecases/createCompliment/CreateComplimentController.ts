@@ -1,22 +1,21 @@
 import { Request, Response } from "express";
-import { CreateComplementService } from "./CreateComplimentService";
+import { container } from "tsyringe";
 
-class CreateComplimentController {
+import { CreateComplimentUseCase } from "./CreateComplimentUseCase";
 
-  async handle(request: Request, response: Response) {
+export class CreateComplimentController {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { tag_id, user_receiver, message } = request.body;
-    const { user_id } = request
+    const { user_id } = request;
 
-    const createComplimentService = new CreateComplementService();
+    const createComplimentUseCase = container.resolve(CreateComplimentUseCase);
 
-    const compliment = await createComplimentService.execute({
+    const compliment = await createComplimentUseCase.execute({
       tag_id,
       user_sender: user_id,
       user_receiver,
       message
     });
-
     return response.status(201).json(compliment);
   }
 }
-export { CreateComplimentController };

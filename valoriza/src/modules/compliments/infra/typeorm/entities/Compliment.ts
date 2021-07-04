@@ -12,7 +12,7 @@ import { Tag } from "@modules/tags/infra/typeorm/entities/Tag";
 import { User } from "@modules/users/infra/typeorm/entities/User";
 
 @Entity("compliments")
-class Compliment {
+export class Compliment {
   @PrimaryColumn()
   readonly id: string;
 
@@ -49,4 +49,3 @@ class Compliment {
     }
   }
 }
-export { Compliment };
