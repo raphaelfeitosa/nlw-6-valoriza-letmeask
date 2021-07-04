@@ -1,14 +1,14 @@
 import { Router } from "express";
-import { CreateTagController } from "@modules/tags/usecases/createTag/CreateTagController";
-import { ListTagsController } from "@modules/tags/usecases/listTags/ListTagsController";
+
+import { CreateTagController } from "@modules/tags/usecases/createTag";
+import { ListAllTagsController } from "@modules/tags/usecases/listTags";
+import { ensureAuthenticated, ensureAdmin } from "@shared/infra/http/middlewares";
 import nameValidator from "@shared/validators/nameValidator";
-import { ensureAdmin } from "@shared/infra/http/middlewares/ensureAdmin";
-import { ensureAuthenticated } from "@shared/infra/http//middlewares/ensureAuthenticated";
 
 const tagsRoutes = Router();
 
 const createTagController = new CreateTagController();
-const listTagsController = new ListTagsController();
+const listTagsController = new ListAllTagsController();
 
 tagsRoutes.post("/", ensureAuthenticated, ensureAdmin, nameValidator, createTagController.handle);
 tagsRoutes.get("/", ensureAuthenticated, listTagsController.handle);

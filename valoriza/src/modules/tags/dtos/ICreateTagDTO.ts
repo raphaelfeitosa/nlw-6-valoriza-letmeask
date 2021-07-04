@@ -1,4 +1,3 @@
-interface ICreateTagDTO {
+export interface ICreateTagDTO {
   name: string;
 }
-export { ICreateTagDTO };

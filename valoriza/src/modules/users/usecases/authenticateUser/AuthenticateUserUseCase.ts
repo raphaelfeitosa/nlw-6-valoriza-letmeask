@@ -4,17 +4,17 @@ import { compare } from "bcryptjs";
 import { sign } from 'jsonwebtoken';
 
 import auth from "@config/auth";
-import { ICreateUserTokenDTO } from "@modules/users/dtos/ICreateUserTokenDTO";
-import { IUsersRepository } from "@modules/users/infra/repositories/userRepository/IUsersRepository";
+import { ICreateUserTokenDTO } from "@modules/users/dtos";
+import { IUsersRepository } from "@modules/users/infra/repositories/userRepository";
 
 @injectable()
-class AuthenticateUserUseCase {
+export class AuthenticateUserUseCase {
   constructor(
     @inject("UsersRepository")
     private usersRepository: IUsersRepository
   ) { }
 
-  async execute({ email, password }: ICreateUserTokenDTO) {
+  async execute({ email, password }: ICreateUserTokenDTO): Promise<any> {
 
     const user = await this.usersRepository.findByEmail(email);
 
@@ -34,4 +34,3 @@ class AuthenticateUserUseCase {
     return token;
   }
 }
-export { AuthenticateUserUseCase };

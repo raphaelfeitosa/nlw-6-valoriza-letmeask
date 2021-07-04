@@ -3,11 +3,11 @@ import { inject, injectable } from "tsyringe";
 import { badRequest } from "@hapi/boom";
 import { classToPlain } from 'class-transformer';
 
-import { ICreateUserDTO } from "@modules/users/dtos/ICreateUserDTO";
-import { IUsersRepository } from "@modules/users/infra/repositories/userRepository/IUsersRepository";
+import { ICreateUserDTO } from "@modules/users/dtos";
+import { IUsersRepository } from "@modules/users/infra/repositories/userRepository";
 
 @injectable()
-class CreateUserUseCase {
+export class CreateUserUseCase {
   constructor(
     @inject("UsersRepository")
     private usersRepository: IUsersRepository) { }
@@ -34,4 +34,3 @@ class CreateUserUseCase {
     return classToPlain(user);
   }
 }
-export { CreateUserUseCase };

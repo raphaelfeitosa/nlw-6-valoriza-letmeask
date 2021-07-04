@@ -1,5 +1,4 @@
-interface ICreateUserTokenDTO {
+export interface ICreateUserTokenDTO {
   email: string;
   password: string;
 }
-export { ICreateUserTokenDTO };

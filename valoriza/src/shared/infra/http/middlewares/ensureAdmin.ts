@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { unauthorized } from "@hapi/boom";
 import { container } from "tsyringe";
-import { UsersRepository } from "@modules/users/infra/repositories/userRepository/UserRepository";
+import { UsersRepository } from "@modules/users/infra/repositories/userRepository";
 
 export async function ensureAdmin(request: Request, response: Response, next: NextFunction) {
   const { user_id } = request;

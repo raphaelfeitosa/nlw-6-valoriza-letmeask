@@ -1,8 +1,7 @@
-import { ITagsRepository, TagsRepository } from "@modules/tags/infra/repositories/tagRepository";
-// import { TagsRepository } from "@modules/tags/infra/repositories/tagRepository/TagsRepository";
-import { IUsersRepository } from "@modules/users/infra/repositories/userRepository/IUsersRepository";
-import { UsersRepository } from "@modules/users/infra/repositories/userRepository/UserRepository";
 import { container } from "tsyringe";
+
+import { ITagsRepository, TagsRepository } from "@modules/tags/infra/repositories/tagRepository";
+import { IUsersRepository, UsersRepository } from "@modules/users/infra/repositories/userRepository";
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",

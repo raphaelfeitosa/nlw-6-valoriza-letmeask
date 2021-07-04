@@ -1,8 +1,10 @@
-import { CreateUserController } from "@modules/users/usecases/createUser/CreateUserController";
-import { ListUsersController } from "@modules/users/usecases/listUsers/ListUsersController";
-import userValidator from "@shared/validators/userValidator";
 import { Router } from "express";
-import { ensureAuthenticated } from "@shared/infra/http/middlewares/ensureAuthenticated";
+
+import { ensureAuthenticated } from "@shared/infra/http/middlewares";
+import userValidator from "@shared/validators/userValidator";
+
+import { CreateUserController } from "@modules/users/usecases/createUser";
+import { ListUsersController } from "@modules/users/usecases/listUsers";
 
 const usersRoutes = Router();
 

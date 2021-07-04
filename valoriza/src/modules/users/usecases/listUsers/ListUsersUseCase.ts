@@ -1,10 +1,9 @@
 import { classToPlain } from "class-transformer";
 import { injectable, inject } from "tsyringe";
-import { IUsersRepository } from "@modules/users/infra/repositories/userRepository/IUsersRepository";
-import { User } from "@modules/users/infra/typeorm/entities/User";
+import { IUsersRepository } from "@modules/users/infra/repositories/userRepository";
 
 @injectable()
-class ListUsersUseCase {
+export class ListUsersUseCase {
   constructor(
     @inject("UsersRepository")
     private usersRepository: IUsersRepository
@@ -16,4 +15,3 @@ class ListUsersUseCase {
     return classToPlain(users);
   }
 }
-export { ListUsersUseCase };
