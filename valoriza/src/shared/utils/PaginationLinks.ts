@@ -5,7 +5,7 @@ interface PageLinks {
   last?: string;
 }
 
-class PaginationLinks {
+export class PaginationLinks {
   static generate(
     page: number,
     pagesTotal: number,
@@ -27,5 +27,3 @@ class PaginationLinks {
     return links;
   }
 }
-
-export { PaginationLinks };
