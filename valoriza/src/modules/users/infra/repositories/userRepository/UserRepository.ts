@@ -21,8 +21,11 @@ export class UsersRepository implements IUsersRepository {
     return user;
   }
 
-  async findAll(): Promise<User[]> {
-    const users = await this.userRepository.find();
+  async findAll(page: number, limit: number): Promise<User[]> {
+    const users = await this.userRepository.find({
+      skip: page,
+      take: limit
+    });
     return users;
   }
 
@@ -35,4 +38,12 @@ export class UsersRepository implements IUsersRepository {
     const user = await this.userRepository.findOne(id);
     return user;
   }
+
+  async count(id: string): Promise<number> {
+    const count = await this.userRepository.count({
+      id
+    });
+    return count;
+  }
+
 }

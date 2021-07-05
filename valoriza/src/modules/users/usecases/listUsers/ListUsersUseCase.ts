@@ -9,9 +9,18 @@ export class ListUsersUseCase {
     private usersRepository: IUsersRepository
   ) { }
 
-  async execute(): Promise<Record<string, string | boolean>> {
-    const users = await this.usersRepository.findAll();
+  async execute(
+    user_id: string,
+    page: number,
+    limit: number
+  ): Promise<Record<string, string | boolean>> {
+    const count = await this.usersRepository.count(user_id);
 
-    return classToPlain(users);
+    const users = await this.usersRepository.findAll(
+      page = (page - 1) * limit,
+      limit
+    );
+
+    return classToPlain({ users, count });
   }
 }
