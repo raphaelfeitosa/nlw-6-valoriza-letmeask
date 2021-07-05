@@ -11,13 +11,17 @@ import "@shared/infra/typeorm";
 import "@shared/container";
 
 import { router } from "./routes";
+import { routeAliases } from "@shared/infra/http/middlewares";
 
 const app = express();
 
 app.use(cors());
+
 app.use(helmet());
 
 app.use(express.json());
+
+app.use(routeAliases);
 
 app.use(router);
 
