@@ -5,7 +5,6 @@ import { IComplimentRepository } from "@modules/compliments/infra/repositories";
 import { Compliment } from "@modules/compliments/infra/typeorm/entities/";
 import { IUsersRepository } from "@modules/users/infra/repositories/userRepository";
 
-
 @injectable()
 export class CreateComplimentUseCase {
   constructor(
@@ -31,8 +30,8 @@ export class CreateComplimentUseCase {
 
     const compliment = this.complimentsRepository.create({
       tag_id,
-      user_receiver,
       user_sender,
+      user_receiver,
       message
     });
     return compliment;

@@ -1,2 +1,2 @@
 export { IComplimentRepository } from "./IComplimentsRepository";
-export { ComplimentsRepositories } from "./ComplimentsRepository";
+export { ComplimentsRepository } from "./ComplimentsRepository";

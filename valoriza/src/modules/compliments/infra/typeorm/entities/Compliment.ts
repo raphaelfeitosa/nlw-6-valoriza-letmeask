@@ -8,8 +8,8 @@ import {
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 
-import { Tag } from "@modules/tags/infra/typeorm/entities/Tag";
-import { User } from "@modules/users/infra/typeorm/entities/User";
+import { Tag } from "@modules/tags/infra/typeorm/entities";
+import { User } from "@modules/users/infra/typeorm/entities";
 
 @Entity("compliments")
 export class Compliment {
