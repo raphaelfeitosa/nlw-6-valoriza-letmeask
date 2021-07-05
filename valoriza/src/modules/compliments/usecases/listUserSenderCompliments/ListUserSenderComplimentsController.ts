@@ -1,15 +1,12 @@
 import { Request, Response } from "express";
-import { ListUserSenderComplimentsService } from "./ListUserSenderComplimentsService";
+import { container } from "tsyringe";
+import { ListUserSenderComplimentsUseCase } from "./ListUserSenderComplimentsUseCase";
 
-class ListUserSenderComplimentsController {
-
-  async handle(request: Request, response: Response) {
+export class ListUserSenderComplimentsController {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { user_id } = request;
-
-    const listUserSenderComplimentsService = new ListUserSenderComplimentsService();
-
-    const user_sender = await listUserSenderComplimentsService.execute(user_id);
+    const listUserSenderComplimentsUseCase = container.resolve(ListUserSenderComplimentsUseCase);
+    const user_sender = await listUserSenderComplimentsUseCase.execute(user_id);
     return response.json(user_sender);
   }
 }
-export { ListUserSenderComplimentsController };
