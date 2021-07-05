@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { classToPlain } from "class-transformer";
 import { Compliment } from "@modules/compliments/infra/typeorm/entities";
 import { IComplimentRepository } from "@modules/compliments/infra/repositories";
 
@@ -9,12 +10,12 @@ export class ListUserSenderComplimentsUseCase {
     private complimentsRepository: IComplimentRepository
   ) { }
 
-  async execute(user_id: string): Promise<Compliment[]> {
+  async execute(user_sender: string): Promise<Record<string, string | boolean>> {
     const compliments = await this.complimentsRepository.findAllUserSender(
-      user_id
+      user_sender
     );
 
-    return compliments;
+    return classToPlain(compliments);
   }
 }
 
