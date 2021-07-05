@@ -10,10 +10,18 @@ export class ListUserReceiverComplimentsUseCase {
     private complimentsRepository: IComplimentRepository
   ) { }
 
-  async execute(user_receiver: string): Promise<Record<string, string | boolean>> {
+  async execute(
+    user_receiver: string,
+    page: number,
+    limit: number
+  ): Promise<Record<string, string | boolean>> {
+    const count = await this.complimentsRepository.countUserReceiver(user_receiver);
+
     const compliments = await this.complimentsRepository.findAllUserReceiver(
-      user_receiver
+      user_receiver,
+      page,
+      limit
     );
-    return classToPlain(compliments);
+    return classToPlain({ compliments, count });
   }
 }
