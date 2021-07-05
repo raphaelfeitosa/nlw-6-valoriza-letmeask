@@ -19,7 +19,7 @@ export class ListUserReceiverComplimentsUseCase {
 
     const compliments = await this.complimentsRepository.findAllUserReceiver(
       user_receiver,
-      page,
+      page = (page - 1) * limit,
       limit
     );
     return classToPlain({ compliments, count });

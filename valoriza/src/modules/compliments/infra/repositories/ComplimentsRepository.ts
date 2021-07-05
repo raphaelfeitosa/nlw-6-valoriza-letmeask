@@ -41,8 +41,8 @@ export class ComplimentsRepository implements IComplimentRepository {
         user_receiver
       },
       relations: ["userSender", "tag"],
-      take: limit,
-      skip: (page - 1) * limit
+      skip: page,
+      take: limit
     });
     return complimentsAllUserReceiver;
   }
@@ -57,7 +57,7 @@ export class ComplimentsRepository implements IComplimentRepository {
         user_sender
       },
       relations: ["userReceiver", "tag"],
-      skip: (page - 1) * limit,
+      skip: page,
       take: limit
     });
     return complimentsAllUserSender;
