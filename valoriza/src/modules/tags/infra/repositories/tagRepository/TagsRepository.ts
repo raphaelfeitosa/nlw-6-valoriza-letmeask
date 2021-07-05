@@ -16,8 +16,11 @@ export class TagsRepository implements ITagsRepository {
     return tag;
   }
 
-  async findAll(): Promise<Tag[]> {
-    const tags = await this.tagsRepository.find();
+  async findAll(page: number, limit: number): Promise<Tag[]> {
+    const tags = await this.tagsRepository.find({
+      skip: page,
+      take: limit
+    });
     return tags;
   }
 
@@ -30,4 +33,10 @@ export class TagsRepository implements ITagsRepository {
     const tag = await this.tagsRepository.findOne(id);
     return tag;
   }
+
+  async count(id: string): Promise<number> {
+    const count = await this.tagsRepository.count({ id });
+    return count;
+  }
+
 }
