@@ -8,10 +8,8 @@ import {
 import { Expose } from 'class-transformer';
 import { v4 as uuid } from "uuid";
 
-
 @Entity("tags")
 export class Tag {
-
   @PrimaryColumn()
   readonly id: string;
 

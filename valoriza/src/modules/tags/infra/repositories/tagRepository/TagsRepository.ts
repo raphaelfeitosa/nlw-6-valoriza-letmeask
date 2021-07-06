@@ -25,12 +25,12 @@ export class TagsRepository implements ITagsRepository {
   }
 
   async findByName(name: string): Promise<Tag | null> {
-    const tag = await this.tagsRepository.findOne(name);
+    const tag = await this.tagsRepository.findOne({ name });
     return tag;
   }
 
   async findById(id: string): Promise<Tag | null> {
-    const tag = await this.tagsRepository.findOne(id);
+    const tag = await this.tagsRepository.findOne({ id });
     return tag;
   }
 
