@@ -45,5 +45,4 @@ export class UsersRepository implements IUsersRepository {
     });
     return count;
   }
-
 }

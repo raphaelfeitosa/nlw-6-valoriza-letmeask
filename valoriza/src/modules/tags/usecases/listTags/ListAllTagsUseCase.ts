@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { classToPlain } from "class-transformer"
+
 import { ITagsRepository } from "@modules/tags/infra/repositories/tagRepository";
 
 @injectable()
@@ -15,7 +16,6 @@ export class ListTagUseCase {
     limit: number
   ): Promise<Record<string, any>> {
     const count = await this.tagsRepository.count(user_id);
-
     const tags = await this.tagsRepository.findAll(
       page = (page - 1) * limit,
       limit

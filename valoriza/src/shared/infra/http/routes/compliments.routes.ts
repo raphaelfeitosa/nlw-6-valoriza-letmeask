@@ -13,8 +13,20 @@ const createComplimentController = new CreateComplimentController();
 
 const complimentsRoutes = Router();
 
-complimentsRoutes.get("/send", ensureAuthenticated, pageValidator, listUserSenderComplimentsController.handle);
-complimentsRoutes.get("/receiver", ensureAuthenticated, pageValidator, listUserReceiverComplimentsController.handle);
-complimentsRoutes.post("/", ensureAuthenticated, complimentValidator, createComplimentController.handle);
+complimentsRoutes.get("/send",
+  ensureAuthenticated,
+  pageValidator,
+  listUserSenderComplimentsController.handle
+);
+complimentsRoutes.get("/receiver",
+  ensureAuthenticated,
+  pageValidator,
+  listUserReceiverComplimentsController.handle
+);
+complimentsRoutes.post("/",
+  ensureAuthenticated,
+  complimentValidator,
+  createComplimentController.handle
+);
 
 export { complimentsRoutes };

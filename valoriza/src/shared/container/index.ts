@@ -8,12 +8,10 @@ container.registerSingleton<IUsersRepository>(
   "UsersRepository",
   UsersRepository
 );
-
 container.registerSingleton<ITagsRepository>(
   "TagsRepository",
   TagsRepository
 );
-
 container.registerSingleton<IComplimentRepository>(
   "ComplimentsRepository",
   ComplimentsRepository

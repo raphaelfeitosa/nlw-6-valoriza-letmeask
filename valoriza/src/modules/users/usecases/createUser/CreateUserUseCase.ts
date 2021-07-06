@@ -19,18 +19,14 @@ export class CreateUserUseCase {
     password
   }: ICreateUserDTO): Promise<Record<string, string | boolean>> {
     const usersAlreadyExists = await this.usersRepository.findByEmail(email);
-
     if (usersAlreadyExists) throw badRequest('User already exists', { code: 140 });
-
     const passwordHash = await hash(password, 8);
-
     const user = this.usersRepository.create({
       name,
       email,
       admin,
       password: passwordHash
     });
-
     return classToPlain(user);
   }
 }

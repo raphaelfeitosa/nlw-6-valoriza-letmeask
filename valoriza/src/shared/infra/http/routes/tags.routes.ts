@@ -11,7 +11,16 @@ const tagsRoutes = Router();
 const createTagController = new CreateTagController();
 const listTagsController = new ListAllTagsController();
 
-tagsRoutes.post("/", ensureAuthenticated, ensureAdmin, nameValidator, createTagController.handle);
-tagsRoutes.get("/", ensureAuthenticated, pageValidator, listTagsController.handle);
+tagsRoutes.post("/",
+  ensureAuthenticated,
+  ensureAdmin,
+  nameValidator,
+  createTagController.handle
+);
+tagsRoutes.get("/",
+  ensureAuthenticated,
+  pageValidator,
+  listTagsController.handle
+);
 
 export { tagsRoutes };

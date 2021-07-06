@@ -14,9 +14,7 @@ export class CreateTagUseCase {
 
   async execute({ name }: ICreateTagDTO): Promise<Tag> {
     const tagAlreadyExists = await this.tagsRepository.findByName(name);
-    if (tagAlreadyExists) {
-      throw badRequest("Tag Already Exists", { code: 240 });
-    }
+    if (tagAlreadyExists) throw badRequest("Tag Already Exists", { code: 240 });
     const tag = await this.tagsRepository.create({ name });
     return tag;
   }

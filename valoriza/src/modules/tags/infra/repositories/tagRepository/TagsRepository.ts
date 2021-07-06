@@ -1,7 +1,8 @@
-import { ICreateTagDTO } from "@modules/tags/dtos/ICreateTagDTO";
 import { getRepository, Repository } from "typeorm";
+
 import { Tag } from "../../typeorm/entities/Tag";
 import { ITagsRepository } from "./ITagsRepository";
+import { ICreateTagDTO } from "@modules/tags/dtos/ICreateTagDTO";
 
 export class TagsRepository implements ITagsRepository {
   private tagsRepository: Repository<Tag>;
@@ -38,5 +39,4 @@ export class TagsRepository implements ITagsRepository {
     const count = await this.tagsRepository.count({ id });
     return count;
   }
-
 }

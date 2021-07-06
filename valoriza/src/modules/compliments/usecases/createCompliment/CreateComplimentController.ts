@@ -7,9 +7,7 @@ export class CreateComplimentController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { tag_id, user_receiver, message } = request.body;
     const { user_id } = request;
-
     const createComplimentUseCase = container.resolve(CreateComplimentUseCase);
-
     const compliment = await createComplimentUseCase.execute({
       tag_id,
       user_sender: user_id,
