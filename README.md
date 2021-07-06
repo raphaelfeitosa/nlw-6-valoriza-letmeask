@@ -1,5 +1,5 @@
 # Valoriza / Letmeask
-Aplicações desenvolvidas durante NLW6 oferecida pela Rockeseat. Trilhas Node e React 
+Aplicações desenvolvidas durante NLW6 oferecida pela [RocketSeat](https://rocketseat.com.br). Trilhas Node e React 
 
 <p align="center">
   <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=8257E5&labelColor=000000">
@@ -16,7 +16,7 @@ Você pode acessar e a aplicação em: [Valoriza](https://github.com/raphaelfeit
 
 ## 💻 Projeto Letmeask
 
-Letmeask é uma aplicação que foi desenvolvida no o NLW-6-Togetherpromovida pela [RocketSeat](https://rocketseat.com.br).
+Letmeask é uma aplicação que foi desenvolvida no NLW-6-Together promovida pela [RocketSeat](https://rocketseat.com.br).
 
 Você pode acessar e clonar o repositorio da aplicação em: [Leatmeask](https://github.com/raphaelfeitosa/nlw-6-nodejs-reactjs/tree/main/letmeask) 
 
