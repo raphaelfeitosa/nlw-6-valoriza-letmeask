@@ -1,0 +1,11 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Valoriza Documentation",
+    "description": "This is an API Valoriza",
+    "version": "1.0.0",
+    "contact": {
+      "email": "raphaelcs2@gmail.com"
+    }
+  }
+}
