@@ -7,5 +7,343 @@
     "contact": {
       "email": "raphaelcs2@gmail.com"
     }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a user",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "140": {
+            "description": "User already exists"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Return all users",
+        "description": "Return all users",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "enter number page",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "640": {
+            "description": "Token not provided"
+          },
+          "641": {
+            "description": "Token invalid"
+          }
+        }
+      }
+    },
+    "/tags": {
+      "post": {
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Create a tag",
+        "description": "Create a new tag",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "240": {
+            "description": "Tag Already Exists"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "640": {
+            "description": "Token not provided"
+          },
+          "641": {
+            "description": "Token invalid"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Return all tags",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "enter number page",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "640": {
+            "description": "Token not provided"
+          },
+          "641": {
+            "description": "Token invalid"
+          }
+        }
+      }
+    },
+    "/compliments": {
+      "post": {
+        "tags": [
+          "Compliments"
+        ],
+        "summary": "Create a compliment",
+        "description": "Create a new compliment",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Compliment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "340": {
+            "description": "Is not allowed create a compliment from and to the same user"
+          },
+          "341": {
+            "description": "Receiver user not found"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "640": {
+            "description": "Token not provided"
+          },
+          "641": {
+            "description": "Token invalid"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Compliments"
+        ],
+        "summary": "Return all compliments",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "enter number page",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "640": {
+            "description": "Token not provided"
+          },
+          "641": {
+            "description": "Token invalid"
+          }
+        }
+      }
+    },
+    "/compliments/send": {
+      "get": {
+        "tags": [
+          "Compliments"
+        ],
+        "summary": "Return compliments sent to other users",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "enter number page",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "640": {
+            "description": "Token not provided"
+          },
+          "641": {
+            "description": "Token invalid"
+          }
+        }
+      }
+    },
+    "/compliments/receiver": {
+      "get": {
+        "tags": [
+          "Compliments"
+        ],
+        "summary": "Return compliments received from other users",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "enter number page",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "640": {
+            "description": "Token not provided"
+          },
+          "641": {
+            "description": "Token invalid"
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "post": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Authentication user",
+        "description": "Authentication user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Email/password incorrect"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
   }
 }
