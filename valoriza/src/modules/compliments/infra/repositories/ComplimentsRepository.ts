@@ -26,8 +26,12 @@ export class ComplimentsRepository implements IComplimentRepository {
     return compliment;
   }
 
-  async findAll(): Promise<Compliment[]> {
-    const compliments = await this.complimentRepository.find();
+  async findAll(page: number, limit: number): Promise<Compliment[]> {
+    const compliments = await this.complimentRepository.find({
+      relations: ["userSender", "userReceiver", "tag"],
+      skip: page,
+      take: limit
+    });
     return compliments;
   }
 
@@ -82,4 +86,8 @@ export class ComplimentsRepository implements IComplimentRepository {
     return countUserSender;
   }
 
+  async countCompliments(): Promise<number> {
+    const countCompliments = await this.complimentRepository.count();
+    return countCompliments;
+  }
 }
