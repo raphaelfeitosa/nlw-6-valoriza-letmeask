@@ -1,4 +1,5 @@
 export interface ICreateUserTokenDTO {
-  email: string;
-  password: string;
+  user_id: string;
+  expires_date: Date;
+  refresh_token: string;
 }
