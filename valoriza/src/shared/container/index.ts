@@ -2,8 +2,9 @@ import { container } from "tsyringe";
 
 import { ITagsRepository, TagsRepository } from "@modules/tags/infra/repositories/tagRepository";
 import { IUsersRepository, UsersRepository } from "@modules/users/infra/repositories/userRepository";
-import { ComplimentsRepository, IComplimentRepository } from "@modules/compliments/infra/repositories";
+import { IComplimentRepository, ComplimentsRepository } from "@modules/compliments/infra/repositories";
 import { IDateProvider, DaysJSDateProvider } from "@shared/container/providers/dateProvider";
+import { IUsersTokensRepository, UsersTokensRepository } from "@modules/users/infra/repositories/userToken";
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",
@@ -17,7 +18,11 @@ container.registerSingleton<IComplimentRepository>(
   "ComplimentsRepository",
   ComplimentsRepository
 );
+container.registerSingleton<IUsersTokensRepository>(
+  "UsersTokensRepository",
+  UsersTokensRepository
+);
 container.registerSingleton<IDateProvider>(
-  "DayjsDateProvider",
+  "DaysJSDateProvider",
   DaysJSDateProvider
 );
