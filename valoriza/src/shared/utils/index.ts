@@ -1,2 +1,3 @@
 export { PaginationLinks } from "./PaginationLinks";
-export { factory } from './factory'
+export { factory } from './factory';
+export { jwtoken } from "./jwtoken";
