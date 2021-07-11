@@ -28,7 +28,7 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
 app.use(routeAliases);
 
-app.use(router);
+app.use("/api/v1", router);
 
 app.use(errors());
 
