@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { User } from "./User";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuid } from "uuid";
 
 @Entity("users_tokens")
 export class UserTokens {
@@ -25,7 +25,7 @@ export class UserTokens {
 
   constructor() {
     if (!this.id) {
-      this.id = uuidv4();
+      this.id = uuid();
     }
   }
 }
