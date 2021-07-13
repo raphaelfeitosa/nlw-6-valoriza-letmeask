@@ -9,5 +9,5 @@ export async function ensureAdmin(request: Request, response: Response, next: Ne
   const usersRepository = container.resolve(UsersRepository);
   const { admin } = await usersRepository.findById(user_id);
   if (admin) return next();
-  throw unauthorized('You are not authorized', 'sample', { code: 541 });
+  throw unauthorized("You are not authorized");
 }

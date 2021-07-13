@@ -10,7 +10,7 @@ interface IPayload {
 
 export async function ensureAuthenticated(request: Request, response: Response, next: NextFunction) {
   const { authorization } = request.headers;
-  if (!authorization) throw badRequest("Token not provided", { code: 640 });
+  if (!authorization) throw badRequest("Token not provided");
   const [, token] = authorization.split(" ");
   try {
     const { sub } = verify(
@@ -20,6 +20,6 @@ export async function ensureAuthenticated(request: Request, response: Response, 
     request.user_id = sub;
     return next();
   } catch (err) {
-    throw unauthorized("Token invalid", "Sample", { code: 641 });
+    throw unauthorized("Token invalid");
   }
 }
