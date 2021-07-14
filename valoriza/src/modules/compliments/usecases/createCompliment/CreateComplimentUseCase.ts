@@ -22,10 +22,9 @@ export class CreateComplimentUseCase {
     message
   }: ICreateComplimentDTO): Promise<Compliment> {
     if (user_sender === user_receiver) throw badRequest(
-      'Is not allowed create a compliment from and to the same user',
-      { code: 340 });
+      "Is not allowed create a compliment from and to the same user");
     const userReceiverExists = await this.usersRepository.findById(user_receiver);
-    if (!userReceiverExists) throw notFound('Receiver user not found', { code: 344 });
+    if (!userReceiverExists) throw notFound("Receiver user not found");
     const compliment = this.complimentsRepository.create({
       tag_id,
       user_sender,
