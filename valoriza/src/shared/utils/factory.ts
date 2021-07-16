@@ -23,8 +23,8 @@ factory.define(
   {},
   {
     tag_id: faker.datatype.uuid,
-    sender_id: faker.datatype.uuid,
-    receiver_id: faker.datatype.uuid,
+    user_sender: faker.datatype.uuid,
+    user_receiver: faker.datatype.uuid,
     message: faker.lorem.sentence,
   }
 );
